@@ -17,7 +17,7 @@ const main = async () => {
     // Printing in the console that the function is starting the web scraping proccess
     console.log('Starting the main scraper function.');
     try {
-      const fullSlotOdds = await fullSlotMainScraper(
+      await fullSlotMainScraper(
         chrome,
         Builder,
         By,

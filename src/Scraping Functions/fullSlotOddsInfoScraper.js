@@ -16,12 +16,10 @@ const fullSlotOddsInfoScraper = async (driver, By, until, sleep) => {
       )
         rows.push(fakeRow);
     }
-    console.log(rows.length);
     let i = 0;
     // Extracting the informations
     for (let row of rows) {
       await sleep(200);
-      console.log(i);
       i += 1;
       const date = await row.getAttribute('data-datesort');
       const teams = await row.findElements(By.className('team'));
@@ -70,7 +68,6 @@ const fullSlotOddsInfoScraper = async (driver, By, until, sleep) => {
         });
       }
     }
-    console.log(odds);
 
     return odds;
   } catch (error) {

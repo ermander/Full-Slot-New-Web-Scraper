@@ -123,11 +123,13 @@ const fullSlotMainScraper = async (
       sleep
     );
     await axios.post(
-      'http://localhost:3004/odds/post-full-new-slot-odds',
+      'https://mybet21-fullslotnew-be.herokuapp.com/odds/post-full-new-slot-odds',
       fullSlotOdds
     );
     const stop = window.performance.now();
     console.log(`Time Taken to execute = ${(stop - start) / 1000} seconds`);
+    await driver.close()
+    await driver.quit()
   } catch (error) {
     console.log(error);
     return error;
