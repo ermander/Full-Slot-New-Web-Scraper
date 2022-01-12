@@ -1,13 +1,6 @@
 // Scraping functions
 const fullSlotOddsInfoScraper = require('./fullSlotOddsInfoScraper');
 const nations = require('../Utils/nation.js');
-const { JSDOM } = require('jsdom');
-const { window } = new JSDOM();
-const axios = require('axios');
-
-/*
-  COMINCIARE A SELEZIONARE QUALI CAMPIONATI APRIRE
-*/
 
 const fullSlotMainScraper = async (
   chrome,
@@ -18,11 +11,9 @@ const fullSlotMainScraper = async (
   until
 ) => {
   try {
-    const start = window.performance.now();
     // Creating the chrome options
-    const options = new chrome.Options().headless();
+    const options = new chrome.Options(); //.headless();
     options.windowSize({ width: 1500, height: 850 });
-
     // Setting the strategies of the page load
     const caps = new Capabilities();
     caps.setPageLoadStrategy('normal');
@@ -37,8 +28,6 @@ const fullSlotMainScraper = async (
     await driver.manage().window();
 
     await driver.get('https://www.fullslotnew.it/scommesse-sportive');
-
-    await sleep(5000);
 
     // Clicco sul navigatore nel calcio
     const navigator = await driver.wait(
@@ -102,13 +91,6 @@ const fullSlotMainScraper = async (
       await sleep(200);
     }
 
-    // for (let i = 2; i < titlesContainers.length; i++) {
-    //   const closeContainer = await titlesContainers[i].findElement(
-    //     By.css('span.mg-chiudi-contenitore > i')
-    //   );
-    //   await closeContainer.click();
-    // }
-
     // Opening all the avaiable tournaments
     const openAllTournamentsButton = await driver.wait(
       until.elementLocated(By.id('minMaxAllComposite'))
@@ -122,14 +104,10 @@ const fullSlotMainScraper = async (
       until,
       sleep
     );
-    await axios.post(
-      'https://mybet21-fullslotnew-be.herokuapp.com/odds/post-full-new-slot-odds',
-      fullSlotOdds
-    );
-    const stop = window.performance.now();
-    console.log(`Time Taken to execute = ${(stop - start) / 1000} seconds`);
-    await driver.close()
-    await driver.quit()
+
+    await driver.close();
+    await driver.quit();
+    return fullSlotOdds;
   } catch (error) {
     console.log(error);
     return error;

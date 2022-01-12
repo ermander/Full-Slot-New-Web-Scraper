@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.4",
+    "betfair-api-node": "^1.0.0",
     "chromedriver": "^96.0.0",
     "jsdom": "^18.1.1",
     "selenium-webdriver": "*"
