@@ -27,11 +27,11 @@ const main = async () => {
         'https://mybet21-fullslotnew-be.herokuapp.com/odds/post-full-new-slot-odds',
         fullSlotOdds
       );
-      const betfairOdds = await fetchBetfairOdds();
-      await axios.post(
-        'https://mybet21-fullslotnew-be.herokuapp.com/odds',
-        betfairOdds
-      );
+      const betfairOdds = await fetchBetfairOdds(fullSlotOdds);
+      // await axios.post(
+      //   'https://mybet21-fullslotnew-be.herokuapp.com/odds/post-betfair-exchange-odds',
+      //   betfairOdds
+      // );
       const stop = window.performance.now();
       console.log(`Time Taken to execute = ${(stop - start) / 1000} seconds`);
     } catch (error) {

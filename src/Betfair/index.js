@@ -1,6 +1,6 @@
 const Betfair = require('betfair-api-node');
 
-const fetchBetfairOdds = async () => {
+const fetchBetfairOdds = async (fullSlotOdds) => {
   try {
     const betfair = new Betfair(
       'XAl3yHNF9KCFr2TI',
@@ -9,14 +9,12 @@ const fetchBetfairOdds = async () => {
       true
     );
     await betfair.login();
+    console.log(fullSlotOdds);
     // Getting full list of soccer events
     let events = await betfair.listEvents({ eventTypeIds: ['1'] });
 
-    events = events.filter(
-      (event) =>
-        event.event.name === 'Salernitana - Lazio' ||
-        event.event.name === 'Central Coast Mariners - Newcastle Jets'
-    );
+    events = events.filter((event) => fullSlotOdds.includes(event.event.name));
+    console.log(events);
 
     // For every event we get the avaiable markets (market catalogue)
     for (let i = 0; i < events.length; i++) {
@@ -101,8 +99,8 @@ const fetchBetfairOdds = async () => {
 
       eventsData.push(eventData);
     }
-
     console.log(eventsData);
+    return eventsData;
   } catch (error) {
     console.log(`An error occurred: ${error}`);
   }

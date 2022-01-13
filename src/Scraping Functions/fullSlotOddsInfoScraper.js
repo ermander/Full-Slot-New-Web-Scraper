@@ -18,14 +18,16 @@ const fullSlotOddsInfoScraper = async (driver, By, until, sleep) => {
     }
     let i = 0;
     // Extracting the informations
+    console.log(rows.length);
     for (let row of rows) {
+      console.log(i);
       await sleep(200);
       i += 1;
       const date = await row.getAttribute('data-datesort');
       const teams = await row.findElements(By.className('team'));
       const [home, away] = [
         await teams[0].getAttribute('innerText'),
-        await teams[1].getAttribute('innerText'),
+        await teams[1].getAttribute('innerText')
       ];
 
       const oddsInfo = await row.findElements(
@@ -34,6 +36,7 @@ const fullSlotOddsInfoScraper = async (driver, By, until, sleep) => {
 
       if (oddsInfo.length === 12) {
         odds.push({
+          name: `${home} - ${away}`,
           date,
           home,
           away,
@@ -64,7 +67,7 @@ const fullSlotOddsInfoScraper = async (driver, By, until, sleep) => {
           noGoalOdd:
             (await oddsInfo[11].getAttribute('innerText')) !== '-'
               ? await oddsInfo[11].getAttribute('innerText')
-              : '0',
+              : '0'
         });
       }
     }
