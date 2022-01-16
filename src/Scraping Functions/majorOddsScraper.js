@@ -41,18 +41,6 @@ const majorOddsScraper = async (driver, By, sleep) => {
       if (i % 12 === 11)
         noGoalOdds.push(parseFloat(await odds[i].getAttribute('innerText')));
     }
-    console.log(
-      oneOdds,
-      xOdds,
-      twoOdds,
-      oneXOdds,
-      oneTwoOdds,
-      xTwoOdds,
-      under2_5Odds,
-      over2_5Odds,
-      goalOdds,
-      noGoalOdds
-    );
     return (
       oneOdds,
       xOdds,

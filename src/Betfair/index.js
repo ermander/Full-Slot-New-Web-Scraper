@@ -103,7 +103,6 @@ const fetchBetfairOdds = async (fullSlotOdds) => {
 
       eventsData.push(eventData);
     }
-    console.log(eventsData);
     return eventsData;
   } catch (error) {
     console.log(`An error occurred: ${error}`);

@@ -31,10 +31,6 @@ const nationsContainerScraper = async (driver, By) => {
         await openAllMatches[index].click();
       }
     }
-
-    // const index = nationNames.indexOf('ITALIA');
-    // console.log(index);
-    // await nationsContainer[index].click();
     return nationsContainer;
   } catch (error) {
     console.log(error);
