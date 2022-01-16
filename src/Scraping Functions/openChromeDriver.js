@@ -1,7 +1,7 @@
 const openChromeDriver = async (chrome, Capabilities, Builder) => {
   try {
     // Creating the chrome options
-    const options = new chrome.Options(); //.headless();
+    const options = new chrome.Options().headless();
     options.windowSize({ width: 1500, height: 850 });
     // Setting the strategies of the page load
     const caps = new Capabilities();
