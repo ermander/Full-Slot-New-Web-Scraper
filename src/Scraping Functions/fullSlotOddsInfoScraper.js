@@ -43,32 +43,32 @@ const fullSlotOddsInfoScraper = async (driver, By, until, sleep) => {
           away,
           oneOdd:
             (await oddsInfo[0].getAttribute('innerText')) !== '-'
-              ? await oddsInfo[0].getAttribute('innerText')
-              : '0',
+              ? parseFloat(await oddsInfo[0].getAttribute('innerText'))
+              : 0,
           xOdd:
             (await oddsInfo[1].getAttribute('innerText')) !== '-'
-              ? await oddsInfo[1].getAttribute('innerText')
-              : '0',
+              ? parseFloat(awaitoddsInfo[1].getAttribute('innerText'))
+              : 0,
           twoOdd:
             (await oddsInfo[2].getAttribute('innerText')) !== '-'
-              ? await oddsInfo[2].getAttribute('innerText')
-              : '0',
+              ? parseFloat(await oddsInfo[2].getAttribute('innerText'))
+              : 0,
           under2_5Odd:
             (await oddsInfo[6].getAttribute('innerText')) !== '-'
-              ? await oddsInfo[6].getAttribute('innerText')
-              : '0',
+              ? parseFloat(await oddsInfo[6].getAttribute('innerText'))
+              : 0,
           over2_5Odd:
             (await oddsInfo[7].getAttribute('innerText')) !== '-'
-              ? await oddsInfo[7].getAttribute('innerText')
-              : '0',
+              ? parseFloat(await oddsInfo[7].getAttribute('innerText'))
+              : 0,
           goalOdd:
             (await oddsInfo[10].getAttribute('innerText')) !== '-'
-              ? await oddsInfo[10].getAttribute('innerText')
-              : '0',
+              ? parseFloat(await oddsInfo[10].getAttribute('innerText'))
+              : 0,
           noGoalOdd:
             (await oddsInfo[11].getAttribute('innerText')) !== '-'
-              ? await oddsInfo[11].getAttribute('innerText')
-              : '0'
+              ? parseFloat(await oddsInfo[11].getAttribute('innerText'))
+              : 0
         });
       }
     }
