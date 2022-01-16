@@ -9,23 +9,27 @@ const fetchBetfairOdds = async (fullSlotOdds) => {
       true
     );
     await betfair.login();
-    console.log(fullSlotOdds);
     // Getting full list of soccer events
     let events = await betfair.listEvents({ eventTypeIds: ['1'] });
-
-    events = events.filter((event) => fullSlotOdds.includes(event.event.name));
-    console.log(events);
+    const newEvents = [];
+    for (let i = 0; i < events.length; i++) {
+      for (let j = 0; j < fullSlotOdds.length; j++) {
+        if (events[i].event.name === fullSlotOdds[j].name) {
+          newEvents.push(events[i]);
+        }
+      }
+    }
 
     // For every event we get the avaiable markets (market catalogue)
-    for (let i = 0; i < events.length; i++) {
-      events[i].markets = await betfair.listMarketCatalogue(
+    for (let i = 0; i < newEvents.length; i++) {
+      newEvents[i].markets = await betfair.listMarketCatalogue(
         {
-          eventIds: [events[i].event.id]
+          eventIds: [newEvents[i].event.id]
         },
         1000
       );
       // Filtering the market by keeping just those who are needed
-      events[i].markets = events[i].markets.filter(
+      newEvents[i].markets = newEvents[i].markets.filter(
         (market) =>
           market.marketName === 'Esito Finale' ||
           market.marketName === 'Under/Over 2,5 gol' ||
@@ -33,20 +37,20 @@ const fetchBetfairOdds = async (fullSlotOdds) => {
       );
 
       // Getting all the back and lay data
-      for (let j = 0; j < events[i].markets.length; j++) {
+      for (let j = 0; j < newEvents[i].markets.length; j++) {
         // Esito finale
-        const objectValues = Object.values(events[i].markets[j]);
+        const objectValues = Object.values(newEvents[i].markets[j]);
 
         if (objectValues.length === 3 && objectValues[1] === 'Esito Finale') {
           const oneXTwoOdds = await betfair.listMarketBook(
-            [events[i].markets[j].marketId],
+            [newEvents[i].markets[j].marketId],
             {
               priceProjection: {
                 priceData: ['EX_BEST_OFFERS']
               }
             }
           );
-          events[i].oneXTwoOdds = oneXTwoOdds;
+          newEvents[i].oneXTwoOdds = oneXTwoOdds;
         }
         // Under/Over 2,5 goal
         if (
@@ -54,14 +58,14 @@ const fetchBetfairOdds = async (fullSlotOdds) => {
           objectValues[1] === 'Under/Over 2,5 gol'
         ) {
           const underOverOdds = await betfair.listMarketBook(
-            [events[i].markets[j].marketId],
+            [newEvents[i].markets[j].marketId],
             {
               priceProjection: {
                 priceData: ['EX_BEST_OFFERS']
               }
             }
           );
-          events[i].underOverOdds = underOverOdds;
+          newEvents[i].underOverOdds = underOverOdds;
         }
 
         // Goal/NoGoal odds
@@ -70,20 +74,20 @@ const fetchBetfairOdds = async (fullSlotOdds) => {
           objectValues[1] === 'Entrambe le Squadre Segnano'
         ) {
           const goalNoGoalOdds = await betfair.listMarketBook(
-            [events[i].markets[j].marketId],
+            [newEvents[i].markets[j].marketId],
             {
               priceProjection: {
                 priceData: ['EX_BEST_OFFERS']
               }
             }
           );
-          events[i].goalNoGoalOdds = goalNoGoalOdds;
+          newEvents[i].goalNoGoalOdds = goalNoGoalOdds;
         }
       }
     }
 
     const eventsData = [];
-    for (let event of events) {
+    for (let event of newEvents) {
       const eventData = {
         home: event.event.name.split(' - ')[0],
         away: event.event.name.split(' - ')[1],

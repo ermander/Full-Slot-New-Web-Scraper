@@ -22,16 +22,24 @@ const main = async () => {
         until
       );
 
-      // Posting the odds
-      await axios.post(
+      // Posting FullSlotNew Odds to BE
+      const postFullSlotNewResponse = await axios.post(
         'https://mybet21-fullslotnew-be.herokuapp.com/odds/post-full-new-slot-odds',
         fullSlotOdds
       );
+      console.log(`FullSlotNew POST Request: ${postFullSlotNewResponse.data}`);
+
+      // Featching Betfair Exchange Odds from API
       const betfairOdds = await fetchBetfairOdds(fullSlotOdds);
-      // await axios.post(
-      //   'https://mybet21-fullslotnew-be.herokuapp.com/odds/post-betfair-exchange-odds',
-      //   betfairOdds
-      // );
+
+      // Posting
+      const postBetfairResponse = await axios.post(
+        'https://mybet21-fullslotnew-be.herokuapp.com/odds/post-betfair-exchange-odds',
+        betfairOdds
+      );
+      console.log(`Betfair POST Request: ${postBetfairResponse.data}`);
+
+      // Printing on the console the time needed for all the operation
       const stop = window.performance.now();
       console.log(`Time Taken to execute = ${(stop - start) / 1000} seconds`);
     } catch (error) {

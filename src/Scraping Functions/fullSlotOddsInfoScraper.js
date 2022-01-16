@@ -17,6 +17,7 @@ const fullSlotOddsInfoScraper = async (driver, By, until, sleep) => {
         rows.push(fakeRow);
     }
     let i = 0;
+
     // Extracting the informations
     console.log(rows.length);
     for (let row of rows) {
