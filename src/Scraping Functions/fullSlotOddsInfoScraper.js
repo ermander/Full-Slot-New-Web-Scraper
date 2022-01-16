@@ -47,7 +47,7 @@ const fullSlotOddsInfoScraper = async (driver, By, until, sleep) => {
               : 0,
           xOdd:
             (await oddsInfo[1].getAttribute('innerText')) !== '-'
-              ? parseFloat(awaitoddsInfo[1].getAttribute('innerText'))
+              ? parseFloat(await oddsInfo[1].getAttribute('innerText'))
               : 0,
           twoOdd:
             (await oddsInfo[2].getAttribute('innerText')) !== '-'
