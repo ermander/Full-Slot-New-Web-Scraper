@@ -6,6 +6,7 @@ const openChromeDriver = require('./Navigation/openChromeDriver.js');
 const closeInitialActiveSections = require('./Navigation/closeInitialActiveSections');
 const openSoccerSideBar = require('./Navigation/openSoccerSideBar');
 const fullTimeOdds = require('./Odds/Full Time/fullTimeOdds');
+const matchInfoes = require('./Match Infoes/matchInfoes');
 // const fullSlotOddsInfoScraper = require('./fullSlotOddsInfoScraper');
 // const openSoccerSection = require('./openSoccerSection.js');
 
@@ -17,6 +18,7 @@ const fullSlotMainScraper = async () => {
     await closeInitialActiveSections(driver);
     await openSoccerSideBar(driver);
     await fullTimeOdds(driver);
+    await matchInfoes(driver);
 
     // // Closing and quitting the chrome driver section
     // await driver.close();
