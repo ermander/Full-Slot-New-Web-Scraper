@@ -3,9 +3,9 @@ const { window } = new JSDOM();
 
 // Full Slot main scraper
 const fullSlotMainScraper = require('./Scraping Functions/fullSlotMainScraper');
-const fetchBetfairOdds = require('./Betfair/index.js');
+//const fetchBetfairOdds = require('./Betfair/index.js');
 require('dotenv').config();
-const { postFullSlotNewOdds, postBetfairOdds } = require('../services/api');
+//const { postFullSlotNewOdds, postBetfairOdds } = require('../services/api');
 
 const main = async () => {
   while (true) {
@@ -14,14 +14,14 @@ const main = async () => {
     try {
       const fullSlotOdds = await fullSlotMainScraper();
 
-      // Posting FullSlotNew Odds to BE
-      postFullSlotNewOdds(fullSlotOdds);
+      // // Posting FullSlotNew Odds to BE
+      // postFullSlotNewOdds(fullSlotOdds);
 
-      // Featching Betfair Exchange Odds from API
-      const betfairOdds = await fetchBetfairOdds(fullSlotOdds);
+      // // Featching Betfair Exchange Odds from API
+      // const betfairOdds = await fetchBetfairOdds(fullSlotOdds);
 
-      // Posting
-      postBetfairOdds(betfairOdds);
+      // // Posting
+      // postBetfairOdds(betfairOdds);
 
       // Printing on the console the time needed for all the operation
       const stop = window.performance.now();
