@@ -2,9 +2,10 @@ const { Builder, Capabilities } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 
 // Scraping functions
-const openChromeDriver = require('./openChromeDriver.js');
-const closeInitialActiveSections = require('./closeInitialActiveSections');
-const openSoccerSideBar = require('./openSoccerSideBar');
+const openChromeDriver = require('./Navigation/openChromeDriver.js');
+const closeInitialActiveSections = require('./Navigation/closeInitialActiveSections');
+const openSoccerSideBar = require('./Navigation/openSoccerSideBar');
+const fullTimeOdds = require('./Odds/Full Time/fullTimeOdds');
 // const fullSlotOddsInfoScraper = require('./fullSlotOddsInfoScraper');
 // const openSoccerSection = require('./openSoccerSection.js');
 
@@ -15,11 +16,8 @@ const fullSlotMainScraper = async () => {
 
     await closeInitialActiveSections(driver);
     await openSoccerSideBar(driver);
+    await fullTimeOdds(driver);
 
-    // // Opening the soccer section
-    // await openSoccerSection(driver);
-    // // Building the array with all the odds informations
-    // const fullSlotOdds = await fullSlotOddsInfoScraper(driver);
     // // Closing and quitting the chrome driver section
     // await driver.close();
     // await driver.quit();

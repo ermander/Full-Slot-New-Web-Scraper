@@ -1,5 +1,5 @@
 const { By } = require('selenium-webdriver');
-const nationNames = require('../Utils/nationNames');
+const nationNames = require('../../Utils/nationNames');
 
 const openTournaments = async (driver, sidebar) => {
   const nations = await sidebar.findElements(
