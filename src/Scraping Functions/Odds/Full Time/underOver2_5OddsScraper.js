@@ -1,6 +1,6 @@
 const { By, until } = require('selenium-webdriver');
 
-const underOver2_5Odds = async (driver) => {
+const underOver2_5OddsScraper = async (driver) => {
   const under2_5 = [];
   const over2_5 = [];
 
@@ -26,7 +26,7 @@ const underOver2_5Odds = async (driver) => {
       }
     }
   }
-  return { under2_5, over2_5 };
+  return under2_5, over2_5;
 };
 
-module.exports = underOver2_5Odds;
+module.exports = underOver2_5OddsScraper;

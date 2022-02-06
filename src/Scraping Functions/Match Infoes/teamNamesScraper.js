@@ -1,6 +1,6 @@
 const { By, until } = require('selenium-webdriver');
 
-const teamNames = async (driver) => {
+const teamNamesScraper = async (driver) => {
   const home = [];
   const away = [];
   const teams = driver.wait(until.elementsLocated(By.className('team')));
@@ -17,8 +17,7 @@ const teamNames = async (driver) => {
     }
   }
 
-  return { home, away };
+  return home, away;
 };
-1644188400;
-1644264000;
-module.exports = teamNames;
+
+module.exports = teamNamesScraper;

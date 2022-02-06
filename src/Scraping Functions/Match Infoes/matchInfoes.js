@@ -1,9 +1,10 @@
 const { By, until } = require('selenium-webdriver');
-const teamNames = require('./teamNames');
+const teamNamesScraper = require('./teamNamesScraper');
+const datesScraper = require('./datesScraper');
 
 const matchInfoes = async (driver) => {
-  const teamNames = await teamNames(driver);
-  const dates = await dates(driver);
+  const teamNames = await teamNamesScraper(driver);
+  const dates = await datesScraper(driver);
 };
 
 module.exports = matchInfoes;

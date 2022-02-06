@@ -1,6 +1,6 @@
 const { By, until } = require('selenium-webdriver');
 
-const goalNoGoalOdds = async (driver) => {
+const goalNoGoalOddsScraper = async (driver) => {
   const goal = [];
   const noGoal = [];
 
@@ -26,7 +26,7 @@ const goalNoGoalOdds = async (driver) => {
       }
     }
   }
-  return { goal, noGoal };
+  return goal, noGoal;
 };
 
-module.exports = goalNoGoalOdds;
+module.exports = goalNoGoalOddsScraper;

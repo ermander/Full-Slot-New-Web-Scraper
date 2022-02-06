@@ -1,6 +1,6 @@
 const { By, until } = require('selenium-webdriver');
 
-const oneXTwoOdds = async (driver) => {
+const oneXTwoOddsScraper = async (driver) => {
   const one = [];
   const x = [];
   const two = [];
@@ -31,7 +31,7 @@ const oneXTwoOdds = async (driver) => {
     }
   }
 
-  return { one, x, two };
+  return one, x, two;
 };
 
-module.exports = oneXTwoOdds;
+module.exports = oneXTwoOddsScraper;
