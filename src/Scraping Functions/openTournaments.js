@@ -1,4 +1,4 @@
-const { By, until } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const nationNames = require('../Utils/nationNames');
 
 const openTournaments = async (driver, sidebar) => {
@@ -38,6 +38,22 @@ const openTournaments = async (driver, sidebar) => {
             );
             await openAllTournamentsButton.click();
           } else {
+            checkIfIsLoading = false;
+            await driver.executeScript(
+              'arguments[0].scrollIntoView(true);',
+              nation
+            );
+            await nation.click();
+
+            const openAllTournamentsButton = await nation.findElement(
+              By.className('openall')
+            );
+
+            await driver.executeScript(
+              'arguments[0].scrollIntoView(true);',
+              openAllTournamentsButton
+            );
+            await openAllTournamentsButton.click();
           }
         }
       }
