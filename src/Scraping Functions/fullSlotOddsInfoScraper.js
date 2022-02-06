@@ -1,4 +1,7 @@
-const fullSlotOddsInfoScraper = async (driver, By, until, sleep) => {
+const { By, until } = require('selenium-webdriver');
+const sleep = require('../Utils/sleep');
+
+const fullSlotOddsInfoScraper = async (driver) => {
   try {
     const odds = [];
     const rows = [];
