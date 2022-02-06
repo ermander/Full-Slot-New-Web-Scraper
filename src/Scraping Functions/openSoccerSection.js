@@ -1,6 +1,8 @@
 const nations = require('../Utils/nation.js');
+const { By, until } = require('selenium-webdriver');
+const sleep = require('../Utils/sleep');
 
-const openSoccerSection = async (driver, By, until, sleep) => {
+const openSoccerSection = async (driver) => {
   try {
     // Opening the soccer navigator
     const navigator = await driver.wait(

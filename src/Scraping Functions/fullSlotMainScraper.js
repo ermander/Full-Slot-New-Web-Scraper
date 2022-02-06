@@ -1,22 +1,18 @@
+const { Builder, By, Capabilities, until } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+
 // Scraping functions
 const fullSlotOddsInfoScraper = require('./fullSlotOddsInfoScraper');
 const openChromeDriver = require('./openChromeDriver.js');
 const openSoccerSection = require('./openSoccerSection.js');
 
-const fullSlotMainScraper = async (
-  chrome,
-  Builder,
-  By,
-  Capabilities,
-  sleep,
-  until
-) => {
+const fullSlotMainScraper = async () => {
   try {
     // Setting up and opening chrome driver
     const driver = await openChromeDriver(chrome, Capabilities, Builder);
 
     // Opening the soccer section
-    await openSoccerSection(driver, By, until, sleep);
+    await openSoccerSection(driver);
     // Building the array with all the odds informations
     const fullSlotOdds = await fullSlotOddsInfoScraper(
       driver,
