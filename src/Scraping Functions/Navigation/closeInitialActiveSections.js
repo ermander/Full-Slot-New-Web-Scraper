@@ -9,7 +9,9 @@ const closeInitialActiveSections = async (driver) => {
       await button.click()
     }
   } catch (error) {
-    console.log(error)
+    console.log(
+      `An error occurred inside the closeInitialActiveSections function: ${error}`
+    )
   }
 }
 

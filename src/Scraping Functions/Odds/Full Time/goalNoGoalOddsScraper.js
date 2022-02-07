@@ -29,7 +29,9 @@ const goalNoGoalOddsScraper = async (driver) => {
     }
     return goal, noGoal
   } catch (error) {
-    console.log(error)
+    console.log(
+      `An error occurred inside the goalNoGoalOddsScraper function: ${error}`
+    )
   }
 }
 

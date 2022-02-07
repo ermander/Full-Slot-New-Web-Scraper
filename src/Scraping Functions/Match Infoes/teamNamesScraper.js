@@ -20,7 +20,9 @@ const teamNamesScraper = async (driver) => {
 
     return home, away
   } catch (error) {
-    console.log(error)
+    console.log(
+      `An error occurred inside the teamNamesScraper function: ${error}`
+    )
   }
 }
 

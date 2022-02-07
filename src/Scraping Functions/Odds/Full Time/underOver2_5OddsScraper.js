@@ -29,7 +29,9 @@ const underOver2_5OddsScraper = async (driver) => {
     }
     return under2_5, over2_5
   } catch (error) {
-    console.log(error)
+    console.log(
+      `An error occurred inside the underOver2_5OddsScraper function: ${error}`
+    )
   }
 }
 

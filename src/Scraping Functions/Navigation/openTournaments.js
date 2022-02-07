@@ -92,7 +92,9 @@ const openTournaments = async (driver, sidebar) => {
       }
     }
   } catch (error) {
-    console.log(error)
+    console.log(
+      `An error occurred inside the openChromeDriver function: ${error}`
+    )
   }
 }
 

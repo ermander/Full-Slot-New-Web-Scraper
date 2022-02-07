@@ -7,7 +7,7 @@ const matchInfoes = async (driver) => {
     const teamNames = await teamNamesScraper(driver)
     const dates = await datesScraper(driver)
   } catch (error) {
-    console.log(error)
+    console.log(`An error occurred inside the matchInfoes function: ${error}`)
   }
 }
 

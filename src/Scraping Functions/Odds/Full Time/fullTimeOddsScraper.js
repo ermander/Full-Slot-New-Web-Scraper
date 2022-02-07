@@ -9,7 +9,9 @@ const fullTimeOddsScraper = async (driver) => {
     const underOver2_5Odds = await underOver2_5OddsScraper(driver)
     const goalNoGoalOdds = await goalNoGoalOddsScraper(driver)
   } catch (error) {
-    console.log(error)
+    console.log(
+      `An error occurred inside the fullTimeOddsScraper function: ${error}`
+    )
   }
 }
 

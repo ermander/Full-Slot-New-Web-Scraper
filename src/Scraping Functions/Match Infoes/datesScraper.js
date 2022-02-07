@@ -19,7 +19,7 @@ const datesScraper = async (driver) => {
     }
     return dates
   } catch (error) {
-    console.log(error)
+    console.log(`An error occurred inside the datesScraper function: ${error}`)
   }
 }
 

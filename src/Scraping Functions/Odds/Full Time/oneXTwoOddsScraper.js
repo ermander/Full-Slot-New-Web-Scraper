@@ -34,7 +34,9 @@ const oneXTwoOddsScraper = async (driver) => {
 
     return one, x, two
   } catch (error) {
-    console.log(error)
+    console.log(
+      `An error occurred inside the oneXTwoOddsScraper function: ${error}`
+    )
   }
 }
 
